@@ -1,0 +1,10 @@
+﻿@model TpixWeb.Models.ViewModels.IndexViewModel
+
+<div class="text-center">
+    @foreach (var category in Model.Categories)
+    {
+        @*<p>@category.Id</p>*@
+        <h2>@category.Title</h2>
+        <a href="/c/@category.Title.ToLower()">test</a>
+    }
+</div>
