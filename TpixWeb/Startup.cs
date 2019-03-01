@@ -14,6 +14,7 @@ using TpixWeb.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TpixWeb.Models;
+using TpixWeb.Services;
 
 namespace TpixWeb
 {
@@ -44,6 +45,12 @@ namespace TpixWeb
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddRoleManager<RoleManager<IdentityRole>>()
                 .AddUserManager<UserManager<IdentityUser>>();
+
+            services.AddTransient<IRestClient, JsonRestClient>();
+            services.AddTransient<IMemberRepository, MemberRepository>();
+            services.AddTransient<ITopicRepository, TopicRepository>();
+            services.AddTransient<IPostRepository, PostRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
 
 
             services.Configure<IdentityOptions>(options =>

@@ -6,15 +6,27 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TpixWeb.Models;
 using TpixWeb.Models.ViewModels;
+using TpixWeb.Services;
 
 namespace TpixWeb.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly IMemberRepository _memberRepository;
+        private readonly IPostRepository _postRepository;
+        private readonly ICategoryRepository _categoryRepository;
+
+        public HomeController(IMemberRepository memberRepository, IPostRepository postRepository, ICategoryRepository categoryRepository)
+        {
+            _memberRepository = memberRepository;
+            _postRepository = postRepository;
+            _categoryRepository = categoryRepository;
+        }
+
+
+        public async Task<IActionResult> Index()
         {
             var vm = new IndexViewModel();
-            vm.Categories = GetCategories();
 
             return View(vm);
         }
