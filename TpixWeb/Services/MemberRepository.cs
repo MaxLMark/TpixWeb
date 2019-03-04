@@ -26,7 +26,7 @@ namespace TpixWeb.Services
 
         public Task<Member> DeleteMember(int id)
         {
-            return _restClient.DeleteAsync<Member>($"{baseUrl}/{id}");
+            return _restClient.DeleteAsync<Member>($"{baseUrl}{id}");
         }
 
         public Task EditMember(Member member)
@@ -36,12 +36,12 @@ namespace TpixWeb.Services
 
         public Task<List<Member>> GetAllMembers()
         {
-            return _restClient.GetAsync<List<Member>>($"{baseUrl}")
+            return _restClient.GetAsync<List<Member>>($"{baseUrl}");
         }
 
         public Task<Member> GetMemberById(int id)
         {
-            return _restClient.GetAsync<Member>($"{baseUrl}/{id}");
+            return _restClient.GetAsync<Member>($"{baseUrl}{id}");
         }
 
         public Task<List<Member>> SearchMembers(Member member)

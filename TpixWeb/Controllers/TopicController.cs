@@ -10,14 +10,14 @@ using TpixWeb.Services;
 
 namespace TpixWeb.Controllers
 {
-    public class HomeController : Controller
+    public class TopicController : Controller
     {
         private readonly IMemberRepository _memberRepository;
         private readonly IPostRepository _postRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly ITopicRepository _topicRepository;
 
-        public HomeController(IMemberRepository memberRepository,
+        public TopicController(IMemberRepository memberRepository,
             IPostRepository postRepository,
             ICategoryRepository categoryRepository,
             ITopicRepository topicRepository)
@@ -28,21 +28,15 @@ namespace TpixWeb.Controllers
             _topicRepository = topicRepository;
         }
 
-
-        public async Task<IActionResult> Index()
+        [Route("t/{topicId}")]
+        public async Task<IActionResult> Index(int topicId)
         {
-            var vm = new IndexViewModel();
+            var vm = new TopicViewModel();
 
-            vm.Categories = await _categoryRepository.GetAllCategories();
+            vm.CurrentTopic = await _topicRepository.GetTopic(topicId);
+            vm.Posts = await _postRepository.GetPostsByTopicId(topicId);
 
             return View(vm);
         }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
     }
 }

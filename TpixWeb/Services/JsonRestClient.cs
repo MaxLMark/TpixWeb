@@ -37,9 +37,6 @@ namespace TpixWeb.Services
         {
             using (var client = new HttpClient()) {
                 client.DefaultRequestHeaders.Accept.Add(AcceptHeader);
-
-                //OBS!!!
-                //Måste eventuellt byta request type till application/x-www-form-urlencoded
                 
                 var request = new HttpRequestMessage(method, url);
                 if (requestBody != null) {

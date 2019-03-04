@@ -1,0 +1,20 @@
+﻿@model TpixWeb.Models.ViewModels.TopicViewModel
+
+<div class="text-center">
+    <div class="font-weight-bold">
+        <p>
+            @Model.CurrentTopic.Title
+        </p>
+        <br />
+        <p class="text-left">
+            @Model.CurrentTopic.MainBody
+        </p>
+    </div>
+
+    @foreach (var post in Model.Posts)
+    {
+        <div class="row">
+            <p>@post.MainBody</p>
+        </div>
+    }
+</div>

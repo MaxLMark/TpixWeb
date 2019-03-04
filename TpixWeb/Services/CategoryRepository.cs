@@ -17,31 +17,29 @@ namespace TpixWeb.Services
             baseUrl = configuration.GetSection("ApiUrl").Value + "/categories/";
         }
 
-        string methodUrl = "/categories/";
-
         public Task<Category> DeleteCategory(int Id)
         {
-            throw new NotImplementedException();
+            return _restClient.DeleteAsync<Category>($"{baseUrl}{Id}");
         }
 
         public Task<List<Category>> GetAllCategories()
         {
-            return _restClient.GetAsync<List<Category>>($"{baseUrl}{methodUrl}");
+            return _restClient.GetAsync<List<Category>>($"{baseUrl}");
         }
 
         public Task<List<Category>> GetCategoriesByTitle(string title)
         {
-            throw new NotImplementedException();
+            return _restClient.GetAsync<List<Category>>($"{baseUrl}{title}");
         }
 
         public Task<Category> PostCategory(Category category)
         {
-            throw new NotImplementedException();
+            return _restClient.PostAsync<Category>($"{baseUrl}", category);
         }
 
         public Task<bool> UpdateCategory(Category category)
         {
-            throw new NotImplementedException();
+            return _restClient.PutAsync<bool>($"{baseUrl}", category);
         }
     }
 }

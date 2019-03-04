@@ -1,1 +1,10 @@
-﻿<p>Hello</p>
+﻿@model TpixWeb.Models.ViewModels.CategoryViewModel
+
+<div class="text-center">
+    @foreach (var topic in Model.Topics)
+    {
+        <a href="/t/@topic.Id">
+            <h2>@topic.Title</h2>
+        </a>
+    }
+</div>

@@ -55,7 +55,7 @@ namespace TpixWeb
 
             services.Configure<IdentityOptions>(options =>
             {
-                // Default Password settings.
+                // Password settings altered
                 options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireNonAlphanumeric = false;

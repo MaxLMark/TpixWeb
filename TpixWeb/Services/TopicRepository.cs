@@ -17,31 +17,29 @@ namespace TpixWeb.Services
             baseUrl = configuration.GetSection("ApiUrl").Value + "/topic/";
         }
 
-        string method = "/topic/";
-
         public Task<Topic> DeleteTopic(int Id)
         {
-            throw new NotImplementedException();
+            return _restClient.DeleteAsync<Topic>($"{baseUrl}");
         }
 
         public Task EditTopic(Topic topic)
         {
-            throw new NotImplementedException();
+            return _restClient.PutAsync<bool>($"{baseUrl}", topic);
         }
 
         public Task<Topic> GetTopic(int Id)
         {
-            throw new NotImplementedException();
+            return _restClient.GetAsync<Topic>($"{baseUrl}{Id}");
         }
 
         public Task<List<Topic>> GetTopicsByCategoryId(int categoryId)
         {
-            throw new NotImplementedException();
+            return _restClient.GetAsync<List<Topic>>($"{baseUrl}GetTopicsForCategory/{categoryId}");
         }
 
         public Task PostTopic(Topic topic)
         {
-            throw new NotImplementedException();
+            return _restClient.PostAsync<Task>($"{baseUrl}", topic);
         }
     }
 }
