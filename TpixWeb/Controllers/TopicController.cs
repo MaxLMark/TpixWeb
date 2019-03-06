@@ -38,5 +38,22 @@ namespace TpixWeb.Controllers
 
             return View(vm);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(TopicViewModel vm)
+        {
+            var newTopic = new Post()
+            {
+                FkCreatedBy = 1,
+                FkParentTopicId = vm.NewPost.FkParentTopicId,
+                MainBody = vm.NewPost.MainBody
+            };
+
+            await _postRepository.AddPost(newTopic);
+
+            //Redirects to index with correct parameters
+            return RedirectToAction("Index", "Topic", new { topicId = vm.CurrentTopic.Id });
+        }
+
     }
 }

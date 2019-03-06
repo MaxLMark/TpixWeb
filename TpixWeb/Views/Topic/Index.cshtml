@@ -1,7 +1,7 @@
 ﻿@model TpixWeb.Models.ViewModels.TopicViewModel
 
 <div class="text-center">
-    <div class="font-weight-bold">
+    <div class="font-weight-bold text-danger">
         <p>
             @Model.CurrentTopic.Title
         </p>
@@ -13,8 +13,23 @@
 
     @foreach (var post in Model.Posts)
     {
-        <div class="row">
-            <p>@post.MainBody</p>
+        <div class="container tpix">
+            <div class="row">
+                <h6 class="font-weight-bold">Created by user id: @post.FkCreatedBy</h6>
+            </div>
+            <div class="row">
+                <br />
+                <p>@post.MainBody</p>
+            </div>
         </div>
     }
 </div>
+
+<form asp-controller="Topic" asp-action="Create" method="post">
+    MainBody for NewPost<input asp-for="NewPost.MainBody" type="text" />
+    <input asp-for="NewPost.FkParentTopicId" value="@Model.CurrentTopic.Id" hidden /><br />
+    <input asp-for="CurrentTopic.Id" value="@Model.CurrentTopic.Id" hidden />
+    <input asp-for="CurrentTopic.Title" value="@Model.CurrentTopic.Title" hidden />
+    <input asp-for="CurrentTopic.MainBody" value="@Model.CurrentTopic.MainBody" hidden />
+    <input type="submit" />
+</form>

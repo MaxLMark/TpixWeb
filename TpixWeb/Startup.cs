@@ -15,6 +15,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TpixWeb.Models;
 using TpixWeb.Services;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace TpixWeb
 {
@@ -87,6 +89,13 @@ namespace TpixWeb
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+            Path.Combine(Directory.GetCurrentDirectory(), "Content")),
+                RequestPath = "/Content"
+            });
+
             app.UseAuthentication();
 
             app.UseMvc(routes =>
@@ -124,13 +133,24 @@ namespace TpixWeb
                 roleResult.Wait();
             }
 
+            //Checks if there is an RegularUser role
+            Task<bool> hasRegularRole = roleManager.RoleExistsAsync("Regular");
+            hasRegularRole.Wait();
+
+            if (!hasRegularRole.Result)
+            {
+                roleResult = roleManager.CreateAsync(new IdentityRole("Regular"));
+                roleResult.Wait();
+            }
+
+
             //Check if the admin user exists and create it if not
             //Add to the Administrator role
 
-            Task<IdentityUser> testUser = userManager.FindByEmailAsync(email);
-            testUser.Wait();
+            Task<IdentityUser> adminUser = userManager.FindByEmailAsync(email);
+            adminUser.Wait();
 
-            if (testUser.Result == null)
+            if (adminUser.Result == null)
             {
                 IdentityUser administrator = new IdentityUser();
                 administrator.Email = email;

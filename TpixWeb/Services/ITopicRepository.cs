@@ -10,7 +10,7 @@ namespace TpixWeb.Services
     {
         Task<Topic> GetTopic(int Id);
         Task<List<Topic>> GetTopicsByCategoryId(int categoryId);
-        Task PostTopic(Topic topic);
+        Task AddTopic(Topic topic);
         Task EditTopic(Topic topic);
         Task<Topic> DeleteTopic(int Id);
     }

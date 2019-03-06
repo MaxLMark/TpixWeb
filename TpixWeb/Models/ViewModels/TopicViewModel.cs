@@ -9,5 +9,7 @@ namespace TpixWeb.Models.ViewModels
     {
         public List<Post> Posts { get; set; }
         public Topic CurrentTopic { get; set; }
+        public Post NewPost { get; set; }
+
     }
 }

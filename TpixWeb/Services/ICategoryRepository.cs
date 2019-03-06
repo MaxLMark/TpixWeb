@@ -11,7 +11,8 @@ namespace TpixWeb.Services
         Task<List<Category>> GetAllCategories();
         Task<List<Category>> GetCategoriesByTitle(string title);
         Task<bool> UpdateCategory(Category category);
-        Task<Category> PostCategory(Category category);
+        Task<Category> AddCategory(Category category);
         Task<Category> DeleteCategory(int Id);
-    }
+        Task<Category> GetCategoryById(int Id);
+     }
 }

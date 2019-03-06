@@ -37,7 +37,7 @@ namespace TpixWeb.Services
             return _restClient.GetAsync<List<Topic>>($"{baseUrl}GetTopicsForCategory/{categoryId}");
         }
 
-        public Task PostTopic(Topic topic)
+        public Task AddTopic(Topic topic)
         {
             return _restClient.PostAsync<Task>($"{baseUrl}", topic);
         }

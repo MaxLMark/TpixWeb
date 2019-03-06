@@ -8,3 +8,13 @@
         </a>
     }
 </div>
+
+<form asp-controller="Category" asp-action="Create" method="post">
+    Title for NewTopic<input asp-for="NewTopic.Title" type="text" />
+    MainBody for NewTopic <input asp-for="NewTopic.MainBody" type="text" />
+    <input asp-for="NewTopic.FkCategoryId" value="@Model.CurrentCategory.Id" hidden /><br />
+    <input asp-for="CurrentCategory.Id" value="@Model.CurrentCategory.Id" hidden />
+    <input asp-for="CurrentCategory.Title" value="@Model.CurrentCategory.Title" hidden />
+    <input asp-for="CurrentCategory.Description" value="@Model.CurrentCategory.Description" hidden />
+    <input type="submit" />
+</form>

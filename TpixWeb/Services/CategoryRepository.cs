@@ -32,7 +32,12 @@ namespace TpixWeb.Services
             return _restClient.GetAsync<List<Category>>($"{baseUrl}{title}");
         }
 
-        public Task<Category> PostCategory(Category category)
+        public Task<Category> GetCategoryById(int Id)
+        {
+            return _restClient.GetAsync<Category>($"{baseUrl}GetCategoryById/{Id}");
+        }
+
+        public Task<Category> AddCategory(Category category)
         {
             return _restClient.PostAsync<Category>($"{baseUrl}", category);
         }

@@ -12,7 +12,7 @@ namespace TpixWeb.Models
         public string MainBody { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? EditedAt { get; set; }
-        public int Fk_CategoryId { get; set; }
-        public int Fk_MemberId { get; set; }
+        public int FkCategoryId { get; set; }
+        public int FkCreatedBy { get; set; }
     }
 }
